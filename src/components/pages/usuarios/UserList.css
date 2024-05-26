@@ -1,0 +1,19 @@
+.user-list {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .user-list h2 {
+    color: #333;
+  }
+  
+  .user-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .user-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  

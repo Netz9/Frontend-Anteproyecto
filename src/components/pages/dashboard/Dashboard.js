@@ -10,6 +10,12 @@ function Sidebar() {
         <li>
           <Link to="/actividad">Crear Actividad</Link>
         </li>
+        <li>
+        <Link to="/expositores">Expositores</Link>
+        </li>
+        <li>
+          <Link to="/usuarios">Usuarios</Link>
+        </li>
       </ul>
     </div>
   );

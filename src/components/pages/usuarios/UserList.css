@@ -1,19 +1,36 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 .user-list {
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .user-list h2 {
-    color: #333;
-  }
-  
-  .user-list ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .user-list li {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  
+  width: 60%;
+}
+
+.user-list h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-list th, .user-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.user-list th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+  color: black;
+}
+
+.user-list td {
+  text-align: left;
+}

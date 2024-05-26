@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login.js';
-import Da from './components/Dashboard.js';
-import Activity from './components/CreateActivity.js'; 
+import Login from './components/pages/login/Login';
+import Dashboard from './components/pages/dashboard/Dashboard';
+import CreateActivity from './components/pages/activity/CreateActivity'; 
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Da />} />
-        <Route path="/actividad" element={<Activity />} /> 
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/actividad" element={<CreateActivity />} /> 
       </Routes>
     </Router>
   );

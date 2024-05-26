@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Importa useHistory para redireccionar
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [usuario, setUsuario] = useState('');
+  const [contrasena, setContrasena] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Obtiene la función de navegación
-  // Obtiene el objeto de historial
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3006/api/login', {
-        username,
-        password
+        usuario,
+        contrasena
       });
       console.log('Respuesta del servidor:', response.data);
-      // Si el inicio de sesión es exitoso, redirige al usuario a la página de dashboard
-      navigate('/');
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
       setError('Usuario o contraseña incorrectos');
@@ -33,21 +31,21 @@ function Login() {
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="username">Usuario:</label>
+            <label htmlFor="usuario">Usuario:</label>
             <input
               type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="usuario"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
             />
           </div>
           <div>
-            <label htmlFor="password">Contraseña:</label>
+            <label htmlFor="contrasena">Contraseña:</label>
             <input
               type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="contrasena"
+              value={contrasena}
+              onChange={(e) => setContrasena(e.target.value)}
             />
           </div>
           <button type="submit">Iniciar Sesión</button>

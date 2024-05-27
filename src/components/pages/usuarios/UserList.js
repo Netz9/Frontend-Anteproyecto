@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CSVLink } from 'react-csv';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -40,32 +39,27 @@ const UserList = () => {
     setSearchTerm(event.target.value);
   };
 
+  const handleEdit = (id) => {
+    navigate(`/usuarios/edit/${id}`);
+  };
+
+  const handleDisable = async (id) => {
+    if (window.confirm('¿Estás seguro que deseas deshabilitar este usuario?')) {
+      try {
+        await axios.patch(`${URI}/${id}`, { estado: 'Inactivo' });
+        getUsuarios();
+      } catch (error) {
+        console.error('Error al deshabilitar el usuario:', error);
+      }
+    }
+  };
+
   const filteredUsuarios = usuarios.filter((usuario) => {
     return (
       (usuario.usuario && usuario.usuario.toLowerCase().includes(searchTerm.toLowerCase())) ||
       (usuario.estado && usuario.estado.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
-
-  const headers = [
-    { label: "ID Usuario", key: "id_usuario" },
-    { label: "Usuario", key: "usuario" },
-    { label: "Estado", key: "estado" },
-    { label: "Rol", key: "rol_descripcion" },
-  ];
-
-  const csvlink = {
-    headers: headers,
-    data: usuarios.map(usuario => ({
-      ...usuario,
-      rol_descripcion: ROLES[usuario.id_rol] || 'Desconocido'
-    })),
-    filename: "usuarios.csv"
-  };
-
-  const handleEdit = (id) => {
-    navigate(`/usuarios/edit/${id}`);
-  };
 
   return (
     <div className="user-list">
@@ -80,9 +74,6 @@ const UserList = () => {
             onChange={handleSearch}
           />
         </div>
-        <CSVLink {...csvlink} className="btn btn-primary light btn-sm">
-          Exportar reporte
-        </CSVLink>
         <button className="btn btn-primary" onClick={() => modalRef.current.showUserModal()}>
           + Agregar Usuario
         </button>
@@ -107,9 +98,15 @@ const UserList = () => {
                   <button className="btn btn-success" onClick={() => handleEdit(usuario.id_usuario)}>
                     <FontAwesomeIcon icon={faEdit} />
                   </button>
-                  <button className="btn btn-danger" style={{ marginLeft: '10px' }}>
-                    <FontAwesomeIcon icon={faBan} />
-                  </button>
+                  {usuario.estado === 'Activo' && (
+                    <button
+                      className="btn btn-danger"
+                      style={{ marginLeft: '10px' }}
+                      onClick={() => handleDisable(usuario.id_usuario)}
+                    >
+                      <FontAwesomeIcon icon={faBan} />
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

@@ -50,7 +50,6 @@ function Login() {
           </div>
           <button type="submit">Iniciar Sesión</button>
         </form>
-        <p>¿No tienes una cuenta? <Link to="/registro">Registrarse</Link></p>
       </div>
     </div>
   );

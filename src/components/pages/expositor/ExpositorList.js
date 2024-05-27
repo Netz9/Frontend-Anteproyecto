@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CSVLink } from 'react-csv';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,32 +32,30 @@ const ExpositorList = () => {
     setSearchTerm(event.target.value);
   };
 
+  const handleEdit = (id) => {
+    navigate(`/expositores/edit/${id}`);
+  };
+
+  const handleDisable = async (id) => {
+    if (window.confirm('¿Estás seguro que deseas deshabilitar este expositor?')) {
+      try {
+        const res = await axios.patch(`${URI}/${id}`, { estado: 'Inactivo' });
+        console.log(res.data); // Verificar la respuesta del backend
+        getExpositores();
+      } catch (error) {
+        console.error('Error al deshabilitar el expositor:', error);
+      }
+    }
+  };
+
   const filteredExpositores = expositores.filter((expositor) => {
     return (
       expositor.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
       expositor.apellido.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      expositor.especialidad.toLowerCase().includes(searchTerm.toLowerCase())||
+      expositor.especialidad.toLowerCase().includes(searchTerm.toLowerCase()) ||
       expositor.estado.toLowerCase().includes(searchTerm.toLowerCase())
     );
   });
-
-  const headers = [
-    { label: "ID Expositor", key: "id_expositor" },
-    { label: "Nombre", key: "nombre" },
-    { label: "Apellido", key: "apellido" },
-    { label: "Especialidad", key: "especialidad" },
-    { label: "Estado", key: "estado" },
-  ];
-
-  const csvlink = {
-    headers: headers,
-    data: expositores,
-    filename: "expositores.csv"
-  };
-
-  const handleEdit = (id) => {
-    navigate(`/expositores/edit/${id}`);
-  };
 
   return (
     <div className="expositor-list">
@@ -73,9 +70,6 @@ const ExpositorList = () => {
             onChange={handleSearch}
           />
         </div>
-        <CSVLink {...csvlink} className="btn btn-primary light btn-sm">
-          Exportar reporte
-        </CSVLink>
         <button className="btn btn-primary" onClick={() => modalRef.current.showExpositorModal()}>
           + Agregar Expositor
         </button>
@@ -102,9 +96,15 @@ const ExpositorList = () => {
                   <button className="btn btn-success" onClick={() => handleEdit(expositor.id_expositor)}>
                     <FontAwesomeIcon icon={faEdit} />
                   </button>
-                  <button className="btn btn-danger" style={{ marginLeft: '10px' }}>
-                    <FontAwesomeIcon icon={faBan} />
-                  </button>
+                  {expositor.estado === 'Activo' && (
+                    <button
+                      className="btn btn-danger"
+                      style={{ marginLeft: '10px' }}
+                      onClick={() => handleDisable(expositor.id_expositor)}
+                    >
+                      <FontAwesomeIcon icon={faBan} />
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

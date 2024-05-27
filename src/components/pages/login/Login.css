@@ -1,104 +1,102 @@
 .login-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://p4.wallpaperbetter.com/wallpaper/539/608/12/black-background-line-violet-wallpaper-preview.jpg'); /* Ejemplo de una imagen de fondo */
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .login-container {
-    max-width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo del contenedor transparente */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra */
-  }
-  
-  .login-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .login-container form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .login-container label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    text-align: center; /* Alinea el texto al centro */
-  }
-  
-  .login-container input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-container button {
-    padding: 12px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-container button:hover {
-    background-color: #0056b3;
-  }
-  
-  .login-container p {
-    margin-top: 15px;
-    text-align: center;
-  }
-  
-  .login-container p a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .login-container p a:hover {
-    text-decoration: underline;
-  }
-  
-  .login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px; /* Ajusta el padding para más espacio dentro del input */
-    margin: 10px 0; /* Agrega espacio arriba y abajo de cada input */
-    box-sizing: border-box;
-  }
-  
-  button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px; /* Agrega espacio arriba del botón */
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.mesoamericana.edu.gt/wp-content/uploads/2020/10/Edificio-C-medicina.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo del contenedor transparente */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center; /* Alinea el texto al centro */
+}
+
+.login-container input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-container button {
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+.login-container p {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.login-container p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-container p a:hover {
+  text-decoration: underline;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px; /* Ajusta el padding para más espacio dentro del input */
+  margin: 10px 0; /* Agrega espacio arriba y abajo de cada input */
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px; /* Agrega espacio arriba del botón */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

@@ -6,13 +6,13 @@
   height: 100%; /* Altura del sidebar */
   background-color: #333; /* Color de fondo */
   color: #fff; /* Color del texto */
-  padding: 20px;
-  transition: width 0.3s;
+  padding: 25px;
+  transition: width 0.5s;
   overflow: hidden;
 }
 
 .sidebar.closed {
-  width: 60px; /* Ancho del sidebar cuando está comprimido */
+  width: 75px; /* Ancho del sidebar cuando está comprimido */
 }
 
 .toggle-btn {
@@ -20,12 +20,20 @@
   border: none;
   color: white;
   font-size: 20px;
-  margin: 10px;
+  margin: 0px;
   cursor: pointer;
 }
 
-.sidebar h3 {
+.menu-title {
   margin-bottom: 20px; /* Espacio inferior para separar el título del menú */
+}
+
+.sidebar.closed .menu-title {
+  display: none; /* Oculta el título del menú cuando el sidebar está comprimido */
+}
+
+.sidebar h3 {
+  margin-bottom: 25px; /* Espacio inferior para separar el título del menú */
 }
 
 .sidebar ul {
@@ -35,15 +43,23 @@
 }
 
 .sidebar ul li {
-  margin-bottom: 10px; /* Espacio entre elementos de la lista */
+  margin-bottom: 25px; /* Espacio entre elementos de la lista */
 }
 
 .sidebar ul li a {
   color: #fff; /* Color del texto del enlace */
   text-decoration: none; /* Quita la subrayado del enlace */
-  display: block; /* Hace que los enlaces ocupen todo el ancho del contenedor */
+  display: flex; /* Alineación de íconos y texto */
+  align-items: center; /* Centra verticalmente íconos y texto */
 }
 
 .sidebar ul li a:hover {
   background-color: #555; /* Cambia el color de fondo al pasar el mouse sobre el enlace */
+}
+
+
+.sidebar-icon {
+  width: 35px; /* Ancho del ícono */
+  height: 35px; /* Altura del ícono */
+  margin-right: 50px; /* Espacio a la derecha del ícono */
 }

@@ -3,12 +3,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const URI = 'http://localhost:3006/api/expositores';
+const EVENTS_URI = 'http://localhost:3006/api/eventos'; // URI para obtener eventos
 
 const EditExpositor = () => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [especialidad, setEspecialidad] = useState('');
-  const [estado, setEstado] = useState('');
+  const [id_evento, setIdEvento] = useState('');
+  const [estado, setEstado] = useState('Activo');
+  const [eventos, setEventos] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -17,12 +20,23 @@ const EditExpositor = () => {
     setNombre(res.data.nombre);
     setApellido(res.data.apellido);
     setEspecialidad(res.data.especialidad);
+    setIdEvento(res.data.id_evento);
     setEstado(res.data.estado);
   }, [id]);
 
   useEffect(() => {
     getExpositorById();
+    getEventos();
   }, [getExpositorById]);
+
+  const getEventos = async () => {
+    try {
+      const res = await axios.get(EVENTS_URI);
+      setEventos(res.data);
+    } catch (error) {
+      console.error('Error al obtener la lista de eventos:', error);
+    }
+  };
 
   const updateExpositor = async (e) => {
     e.preventDefault();
@@ -30,6 +44,7 @@ const EditExpositor = () => {
       nombre,
       apellido,
       especialidad,
+      id_evento,
       estado
     });
     navigate('/expositores');
@@ -50,6 +65,17 @@ const EditExpositor = () => {
         <div className="mb-3">
           <label className="form-label">Especialidad</label>
           <input type="text" className="form-control" value={especialidad} onChange={(e) => setEspecialidad(e.target.value)} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">ID Evento</label>
+          <select className="form-control" value={id_evento} onChange={(e) => setIdEvento(e.target.value)} required>
+            <option value="">Seleccione un evento</option>
+            {eventos.map((evento) => (
+              <option key={evento.id_evento} value={evento.id_evento}>
+                {evento.nombre}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-3">
           <label className="form-label">Estado</label>

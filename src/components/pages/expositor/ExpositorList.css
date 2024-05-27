@@ -11,11 +11,17 @@ body, html {
 
 .expositor-list {
   display: flex;
+  flex-direction: column; /* Cambiado para permitir el centrado vertical */
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
   height: 100%;
   width: 100%;
 }
 
 .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 250px; /* Ajusta el ancho según tu diseño */
   background-color: #333; /* O el color que prefieras */
   color: #fff;
@@ -26,14 +32,20 @@ body, html {
   margin-left: 250px; /* Mismo ancho que el sidebar */
   padding: 20px;
   width: calc(100% - 250px);
+  display: flex;
+  flex-direction: column; /* Permitir el centrado vertical */
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
 }
 
 .expositor-list h2 {
   color: #333;
+  text-align: center; /* Asegura que el título esté centrado */
 }
 
 .expositor-list .search-area {
   margin-bottom: 20px;
+  text-align: center; /* Centra la barra de búsqueda */
 }
 
 .expositor-list .search-area input {
@@ -44,16 +56,17 @@ body, html {
 }
 
 .table {
-  width: 100%;
+  width: 80%; /* Ajusta el ancho según sea necesario */
+  max-width: 1200px; /* Limita el ancho máximo */
   border-collapse: collapse;
   margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente para celdas */
 }
 
 .table th, .table td {
   padding: 12px;
   border: 1px solid #ddd;
   text-align: left;
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para celdas */
 }
 
 .table th {

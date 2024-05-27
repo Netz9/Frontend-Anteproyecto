@@ -8,15 +8,18 @@ import CreateExpositor from './CreateExpositor'; // Importa el nuevo componente
 import Sidebar from '../../Sidebar'; // Importa el Sidebar
 
 const URI = 'http://localhost:3006/api/expositores';
+const URI_EVENTS = 'http://localhost:3006/api/eventos';
 
 const ExpositorList = () => {
   const [expositores, setExpositores] = useState([]);
+  const [eventos, setEventos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const modalRef = useRef();
   const navigate = useNavigate();
 
   useEffect(() => {
     getExpositores();
+    getEventos();
   }, []);
 
   const getExpositores = async () => {
@@ -25,6 +28,15 @@ const ExpositorList = () => {
       setExpositores(res.data);
     } catch (error) {
       console.error('Error al obtener la lista de expositores:', error);
+    }
+  };
+
+  const getEventos = async () => {
+    try {
+      const res = await axios.get(URI_EVENTS);
+      setEventos(res.data);
+    } catch (error) {
+      console.error('Error al obtener la lista de eventos:', error);
     }
   };
 
@@ -39,13 +51,17 @@ const ExpositorList = () => {
   const handleDisable = async (id) => {
     if (window.confirm('¿Estás seguro que deseas deshabilitar este expositor?')) {
       try {
-        const res = await axios.patch(`${URI}/${id}`, { estado: 'Inactivo' });
-        console.log(res.data); // Verificar la respuesta del backend
+        await axios.patch(`${URI}/${id}`, { estado: 'Inactivo' });
         getExpositores();
       } catch (error) {
         console.error('Error al deshabilitar el expositor:', error);
       }
     }
+  };  
+
+  const findEventoNombre = (id_evento) => {
+    const evento = eventos.find(evento => evento.id_evento === id_evento);
+    return evento ? `${evento.nombre}` : id_evento;
   };
 
   const filteredExpositores = expositores.filter((expositor) => {
@@ -81,6 +97,7 @@ const ExpositorList = () => {
               <th>Apellido</th>
               <th>Especialidad</th>
               <th>Estado</th>
+              <th>Evento</th>
               <th>Acciones</th> {/* Nueva columna de acciones */}
             </tr>
           </thead>
@@ -92,6 +109,7 @@ const ExpositorList = () => {
                 <td>{expositor.apellido}</td>
                 <td>{expositor.especialidad}</td>
                 <td>{expositor.estado}</td>
+                <td>{findEventoNombre(expositor.id_evento)}</td>
                 <td className="actions">
                   <button className="btn btn-success" onClick={() => handleEdit(expositor.id_expositor)}>
                     <FontAwesomeIcon icon={faEdit} />

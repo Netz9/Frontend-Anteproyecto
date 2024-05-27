@@ -4,8 +4,8 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faBan } from '@fortawesome/free-solid-svg-icons';
 import './UserList.css';
-import CreateUser from './CreateUser'; // Importa el nuevo componente
-import Sidebar from '../../Sidebar'; // Importa el Sidebar
+import CreateUser from './CreateUser';
+import Sidebar from '../../Sidebar';
 
 const URI = 'http://localhost:3006/api/usuarios';
 
@@ -46,8 +46,11 @@ const UserList = () => {
   const handleDisable = async (id) => {
     if (window.confirm('¿Estás seguro que deseas deshabilitar este usuario?')) {
       try {
-        await axios.patch(`${URI}/${id}`, { estado: 'Inactivo' });
-        getUsuarios();
+        const usuario = usuarios.find((usr) => usr.id_usuario === id);
+        if (usuario) {
+          await axios.patch(`${URI}/${id}`, { estado: 'Inactivo' });
+          getUsuarios();
+        }
       } catch (error) {
         console.error('Error al deshabilitar el usuario:', error);
       }
@@ -84,7 +87,7 @@ const UserList = () => {
               <th>Usuario</th>
               <th>Estado</th>
               <th>Rol</th>
-              <th>Acciones</th> {/* Nueva columna de acciones */}
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -93,7 +96,7 @@ const UserList = () => {
                 <td>{usuario.id_usuario}</td>
                 <td>{usuario.usuario}</td>
                 <td>{usuario.estado}</td>
-                <td>{ROLES[usuario.id_rol] || 'Desconocido'}</td>
+                <td>{ROLES[usuario.id_rol]}</td>
                 <td className="actions">
                   <button className="btn btn-success" onClick={() => handleEdit(usuario.id_usuario)}>
                     <FontAwesomeIcon icon={faEdit} />

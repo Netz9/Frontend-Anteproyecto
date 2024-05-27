@@ -1,36 +1,74 @@
-.container {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('https://virtual.mesoamericana.edu.gt/pluginfile.php/1/theme_moove/sliderimage1/1705009618/Edificio-L3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .user-list {
-  width: 60%;
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
 
-.user-list h4 {
-  text-align: center;
+.sidebar {
+  width: 250px; /* Ajusta el ancho según tu diseño */
+  background-color: #333; /* O el color que prefieras */
+  color: #fff;
+  height: 100vh; /* Para que ocupe toda la altura de la pantalla */
+}
+
+.content {
+  margin-left: 250px; /* Mismo ancho que el sidebar */
+  padding: 20px;
+  width: calc(100% - 250px);
+}
+
+.user-list h2 {
+  color: #333;
+}
+
+.user-list .search-area {
   margin-bottom: 20px;
 }
 
-.user-list table {
+.user-list .search-area input {
+  padding: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin-right: 10px;
+}
+
+.table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.user-list th, .user-list td {
+.table th, .table td {
+  padding: 12px;
   border: 1px solid #ddd;
-  padding: 8px;
+  text-align: left;
+  background-color: transparent; /* Fondo transparente para celdas */
 }
 
-.user-list th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #f2f2f2;
-  color: black;
+.table th {
+  background-color: transparent; /* Fondo transparente para encabezados */
+  font-weight: bold;
 }
 
-.user-list td {
-  text-align: left;
+.table .actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.table .actions .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
